@@ -2,6 +2,7 @@
     'use strict'
     $(document).keyup('.searchBar',function() {
         var title = $('.searchCourse').val()
+        console.log(title)
         var search_route = $('.search_route').val()
 
         if (title) {
@@ -17,7 +18,7 @@
             url: search_route,
             data: {'title': title},
             success: function (response) {
-                $('.appendCourseSearchList').html(response);
+                $('.results').html(response);
             }
         });
     });

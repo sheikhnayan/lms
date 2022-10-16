@@ -231,6 +231,9 @@
 .icon-facebook:before {
   content: "\e923";
 }
+.icon-pinterest:before {
+  content: "\f0d2";
+}
 .icon-flag:before {
   content: "\e924";
 }

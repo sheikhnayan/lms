@@ -6,5 +6,5 @@
         </a>
     </li>
 @empty
-    <li class="search-bar-result-item no-search-result-found">{{ __('No Data Found') }}</li>
+    <li class="search-bar-result-item no-search-result-found" style="color: #000;">{{ __('No Data Found') }}</li>
 @endforelse

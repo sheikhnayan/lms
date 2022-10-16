@@ -15,6 +15,9 @@ use App\Http\Controllers\Instructor\LiveClassController;
 use App\Http\Controllers\Student\MyCourseController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
+//new frontend 
+use App\Http\Controllers\Frontend_new\MainController;
+
 
 Route::group(['middleware' => 'guest'], function () {
     Route::get('sign-up', [RegistrationController::class, 'signUp'])->name('sign-up');
@@ -31,11 +34,7 @@ Route::get('user/email/verify/{token}', [RegistrationController::class, 'emailVe
 
 Route::get('/', [MainIndexController::class, 'index'])->name('main.index');
 
-Route::get('/index-new',function(){
-
-    return view('frontend_new.index');
-
-});
+Route::get('/index-new',[MainController::class,'index']);
 
 Route::get('about-us', [MainIndexController::class, 'aboutUs'])->name('about');
 Route::get('contact-us', [MainIndexController::class, 'contactUs'])->name('contact');

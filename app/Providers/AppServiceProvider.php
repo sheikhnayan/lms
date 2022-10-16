@@ -72,6 +72,24 @@ class AppServiceProvider extends ServiceProvider
             $view->with($data);
         });
 
+        View::composer('frontend_new.layouts.main', function ($view) {
+            $data['categories'] = Category::with('subcategories')->active()->get();
+            $data['cartQuantity'] = CartManagement::whereUserId(@Auth::user()->id)->count();
+            $data['wishlistQuantity'] = Wishlist::whereUserId(@Auth::user()->id)->count();
+            $data['menus'] = Menu::all();
+            $data['staticMenus'] = Menu::active()->whereType(1)->get();
+            $data['dynamicMenus'] = Menu::active()->whereType(2)->get();
+
+            $data['student_notifications'] = Notification::where('user_id', @auth()->user()->id)->where('user_type', 3)->where('is_seen', 'no')->orderBy('created_at', 'DESC')->get();
+            $data['instructor_notifications'] = Notification::where('user_id', @auth()->user()->id)->where('user_type', 2)->where('is_seen', 'no')->orderBy('created_at', 'DESC')->get();
+            $view->with($data);
+        });
+
+        View::composer('frontend_new.index', function ($view) {
+            $data['categories'] = Category::with('subcategories')->active()->get();
+            $view->with($data);
+        });
+
         View::composer('frontend.layouts.footer', function ($view) {
             $data['menus'] = Menu::active()->get();
             $data['dynamicMenus'] = Menu::active()->whereType(2)->get();
